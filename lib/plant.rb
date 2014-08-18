@@ -23,8 +23,8 @@ class Plant
     plants
   end
 
-  # def ==(another_plant)
-
-  # end
+  def ==(another_plant)
+    self.name == another_plant.name
+  end
 
 end
