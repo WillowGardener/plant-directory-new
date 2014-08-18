@@ -11,7 +11,8 @@ class Trait
   end
 
   def save
-    DB.exec("INSERT INTO traits (trait_name) VALUES ('#{@trait}') RETURNING id;")
+    results = DB.exec("INSERT INTO traits (trait_name) VALUES ('#{@trait}') RETURNING id;")
+    @id = results.first['id'].to_i
   end
 
   def self.all

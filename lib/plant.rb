@@ -2,12 +2,11 @@ require 'pg'
 require 'spec_helper'
 
 class Plant
-  attr_reader(:attributes, :name, :traits, :id)
+  attr_reader(:attributes, :name, :id)
 
   def initialize(attributes)
     @attributes = attributes
     @name = attributes[:name]
-    @traits = attributes[:traits]
     @id = attributes[:id]
   end
 

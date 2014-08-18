@@ -11,4 +11,10 @@ describe Trait do
     medicinal.save
     expect(Trait.all).to eq ([medicinal])
   end
+
+  it "sets the trait's ID when the user saves it" do
+    nitrogen_fixer = Trait.new({:trait => "nitrogen fixing"})
+    nitrogen_fixer.save
+    expect(nitrogen_fixer.id).to be_an_instance_of Fixnum
+  end
 end
