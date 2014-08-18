@@ -12,7 +12,8 @@ class Plant
   end
 
   def save
-    DB.exec("INSERT INTO plants (plant_name) VALUES ('#{@name}');")
+    results = DB.exec("INSERT INTO plants (plant_name) VALUES ('#{@name}') RETURNING id;")
+    @id = results.first['id'].to_i
   end
 
   def self.all

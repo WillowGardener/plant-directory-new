@@ -11,7 +11,7 @@ class Trait
   end
 
   def save
-    DB.exec("INSERT INTO traits (trait_name) VALUES ('#{@trait}');")
+    DB.exec("INSERT INTO traits (trait_name) VALUES ('#{@trait}') RETURNING id;")
   end
 
   def self.all
