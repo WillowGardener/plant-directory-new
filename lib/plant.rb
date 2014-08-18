@@ -1,3 +1,6 @@
+require 'pg'
+require 'spec_helper'
+
 class Plant
   attr_reader(:attributes, :name, :traits, :id)
 
@@ -9,7 +12,7 @@ class Plant
   end
 
   def save
-    DB.exec("INSERT INTO plants (plant_name) VALUES ('#{@name}')")
+    DB.exec("INSERT INTO plants (plant_name) VALUES ('#{@name}');")
   end
 
   def self.all

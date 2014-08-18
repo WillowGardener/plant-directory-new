@@ -1,8 +1,4 @@
-require 'trait'
-require 'rspec'
-require 'pg'
-
-
+require 'spec_helper'
 
 describe Trait do
   it "allows the user to add a trait" do

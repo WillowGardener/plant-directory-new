@@ -1,5 +1,5 @@
 require 'pg'
-
+require 'spec_helper'
 
 class Trait
   attr_reader(:trait, :attributes, :id)
