@@ -3,6 +3,7 @@ require 'plant'
 require 'pg'
 
 DB = PG.connect({:dbname => 'plant_directory_test'})
+DB.exec("DELETE FROM plants *;")
 
 describe Plant do
   it "allows the user to add a plant with traits" do
