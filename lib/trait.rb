@@ -46,6 +46,7 @@ class Trait
     results.each do |r|
       all_plants << Plant.new({:name => r['plant_name'], :id => r['id'].to_i})
     end
+    # all_plants = all_plants.sort
     all_plants
   end
 

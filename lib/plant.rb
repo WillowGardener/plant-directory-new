@@ -41,7 +41,13 @@ class Plant
   end
 
   def all_traits
-
+    all_traits = []
+    results = DB.exec("select traits.* from plants join plant_traits on (plants.id = plant_traits.plant_id) join traits on (plant_traits.trait_id = traits.id) where plants.id = ('#{self.id}')")
+    results.each do |r|
+      all_traits << Trait.new({:trait => r['trait_name'], :id => r['id'].to_i})
+    end
+    # all_traits = all_traits.sort
+    all_traits
   end
 
 end
