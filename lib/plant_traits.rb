@@ -1,3 +1,5 @@
+require 'pg'
+
 class Plant_Trait
   attr_reader(:plant_id, :trait_id, :attributes, :id)
 
@@ -11,6 +13,7 @@ class Plant_Trait
   def save
     results = DB.exec("INSERT INTO plant_traits (plant_id, trait_id) VALUES ('#{@plant_id}', '#{@trait_id}') RETURNING id;")
     @id = results.first['id'].to_i
+    puts @id
   end
 
   def self.all
@@ -27,6 +30,20 @@ class Plant_Trait
 
   def ==(another_plant_trait)
     self.id == another_plant_trait.id
+  end
+
+  def delete
+    DB.exec("DELETE FROM plant_traits WHERE id = (#{self.id})")
+  end
+
+  def update_plant_id(new_plant_id)
+    DB.exec("UPDATE plant_traits SET plant_id = ('#{new_plant_id}') WHERE id = ('#{self.id}')")
+    @plant_id = new_plant_id
+  end
+
+  def update_trait_id(new_trait_id)
+    DB.exec("UPDATE plant_traits SET trait_id = ('#{new_trait_id}') WHERE id = ('#{self.id}')")
+    @trait_id = new_trait_id
   end
 end
 

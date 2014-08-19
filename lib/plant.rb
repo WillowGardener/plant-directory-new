@@ -1,5 +1,4 @@
 require 'pg'
-require 'spec_helper'
 
 class Plant
   attr_reader(:attributes, :name, :id)
