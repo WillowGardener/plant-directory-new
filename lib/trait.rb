@@ -30,4 +30,8 @@ class Trait
     self.trait == another_trait.trait
   end
 
+  def delete
+    DB.exec("DELETE FROM traits WHERE id = (#{self.id})")
+  end
+
 end

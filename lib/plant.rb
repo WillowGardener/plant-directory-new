@@ -30,4 +30,8 @@ class Plant
     self.name == another_plant.name
   end
 
+  def delete
+    DB.exec("DELETE FROM plants WHERE id = (#{self.id})")
+  end
+
 end

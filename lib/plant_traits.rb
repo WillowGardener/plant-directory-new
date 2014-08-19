@@ -5,7 +5,7 @@ class Plant_Traits
     @plant_name = attributes[:plant_name]
     @traits = attributes[:traits]
     @attributes = attributes
-    @id = nil
+    @id = attributes[:id]
   end
 
   def save

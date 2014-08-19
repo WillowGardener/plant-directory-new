@@ -9,6 +9,7 @@ describe Plant_Traits do
   # it "allows a user to save data to the plant and traits tables and return their id" do
   #   yarrow = Plant_Traits.new({:plant_name => "yarrow", :traits => ["cover crop"]})
   #   yarrow.save
+  #   puts yarrow.traits
   #   expect(yarrow.id).to be_an_instance_of Fixnum
   # end
 end

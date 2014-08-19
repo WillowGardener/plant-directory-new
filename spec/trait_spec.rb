@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe Trait do
+  it "allows the user to delete a trait from the database" do
+    grass = Trait.new({:name => "Grass"})
+    grass.save
+    grass.delete
+    expect(Trait.all).to eq([])
+  end
+
   it "allows the user to add a trait" do
     trait = Trait.new({:trait => "nutrient accumulator"})
     expect(trait).to be_an_instance_of Trait

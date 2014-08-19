@@ -3,6 +3,13 @@ require 'plant'
 require 'spec_helper'
 
 describe Plant do
+  it "allows the user to delete a plant from the database" do
+    grass = Plant.new({:name => "Grass"})
+    grass.save
+    grass.delete
+    expect(Plant.all).to eq([])
+  end
+
   it "allows the user to add a plant with traits" do
     stinging_nettle = Plant.new({:name => "Stinging Nettle"})
     expect(stinging_nettle.attributes).to eq({:name => "Stinging Nettle"})
@@ -19,4 +26,5 @@ describe Plant do
     lupine.save
     expect(lupine.id).to be_an_instance_of Fixnum
   end
+
 end
