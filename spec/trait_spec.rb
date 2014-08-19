@@ -24,4 +24,11 @@ describe Trait do
     nitrogen_fixer.save
     expect(nitrogen_fixer.id).to be_an_instance_of Fixnum
   end
+
+  it "allows the user to update the plant's name" do
+    poisonous = Trait.new({:trait => "edible"})
+    poisonous.save
+    poisonous.update("delicious")
+    expect(poisonous.trait).to eq "delicious"
+  end
 end

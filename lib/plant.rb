@@ -34,4 +34,9 @@ class Plant
     DB.exec("DELETE FROM plants WHERE id = (#{self.id})")
   end
 
+  def update(new_name)
+    DB.exec("UPDATE plants SET plant_name = ('#{new_name}') WHERE id = ('#{self.id}')")
+    @name = new_name
+  end
+
 end

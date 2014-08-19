@@ -27,4 +27,11 @@ describe Plant do
     expect(lupine.id).to be_an_instance_of Fixnum
   end
 
+  it "allows the user to update the plant's name" do
+    rhubarb = Plant.new({:name => "rhubarb"})
+    rhubarb.save
+    rhubarb.update("green onion")
+    expect(rhubarb.name).to eq "green onion"
+  end
+
 end

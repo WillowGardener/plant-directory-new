@@ -34,4 +34,9 @@ class Trait
     DB.exec("DELETE FROM traits WHERE id = (#{self.id})")
   end
 
+  def update(new_trait)
+    DB.exec("UPDATE traits SET trait_name = ('#{new_trait}') WHERE id = ('#{self.id}')")
+    @trait = new_trait
+  end
+
 end
