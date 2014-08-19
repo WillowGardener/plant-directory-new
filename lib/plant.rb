@@ -1,4 +1,6 @@
 require 'pg'
+require 'plant_traits'
+require 'trait'
 
 class Plant
   attr_reader(:attributes, :name, :id)
@@ -36,6 +38,10 @@ class Plant
   def update(new_name)
     DB.exec("UPDATE plants SET plant_name = ('#{new_name}') WHERE id = ('#{self.id}')")
     @name = new_name
+  end
+
+  def all_traits
+
   end
 
 end

@@ -1,4 +1,6 @@
 require 'pg'
+require 'plant_traits'
+require 'plant'
 
 class Trait
   attr_reader(:trait, :attributes, :id)
@@ -37,5 +39,15 @@ class Trait
     DB.exec("UPDATE traits SET trait_name = ('#{new_trait}') WHERE id = ('#{self.id}')")
     @trait = new_trait
   end
+
+  def all_plants
+    all_plants = []
+    results = DB.exec("select plants.* from traits join plant_traits on (traits.id = plant_traits.trait_id) join plants on (plant_traits.plant_id = plants.id) where traits.id = ('#{self.id}')")
+    results.each do |r|
+      all_plants << Plant.new({:name => r['plant_name'], :id => r['id'].to_i})
+    end
+    all_plants
+  end
+
 
 end

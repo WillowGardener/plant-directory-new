@@ -13,7 +13,6 @@ class Plant_Trait
   def save
     results = DB.exec("INSERT INTO plant_traits (plant_id, trait_id) VALUES ('#{@plant_id}', '#{@trait_id}') RETURNING id;")
     @id = results.first['id'].to_i
-    puts @id
   end
 
   def self.all
