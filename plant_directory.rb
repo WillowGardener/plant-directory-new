@@ -161,6 +161,66 @@ def edit_plant
   end
 end
 
+def edit_trait
+  puts "Which trait do you want to edit?"
+  Trait.all.each do |trait|
+    puts trait.trait
+  end
+  trait_input = gets.chomp
+  trait_counter = 0
+  Trait.all.each do |trait|
+    if trait_input == trait.name
+      @selected_trait = trait
+      trait_counter += 1
+    end
+  end
+  if trait_counter == 0
+    puts "invalid input, try again"
+    edit_trait
+  end
+  puts "What do you want to do with #{trait_input}?"
+  puts "1) edit trait name"
+  puts "2) add plant association"
+  puts "3) remove plant association"
+  menu_input = gets.chomp
+  if menu_input == "1"
+    puts "Enter the trait's new name:"
+    new_name = gets.chomp
+    @selected_trait.update(new_name)
+    main_menu
+  elsif menu_input == "2"
+    puts "Which plant would you like to associate with this plant?"
+    Plant.all.each_with_index do |plant, index|
+      puts "#{index + 1}) #{plant.name}"
+    end
+    puts "Enter 'm' to return to main menu"
+    user_input = gets.chomp
+    if user_input == 'm'
+      main_menu
+    end
+    Plant.all.each_with_index do |plant, index|
+      if index == (user_input.to_i - 1)
+        @selected_plant = plant
+      end
+    end
+    new_association = Plant_Trait.new({:plant_id => @selected_plant.id, :trait_id => @selected_trait.id})
+    new_association.save
+    main_menu
+  elsif menu_input == "3"
+    puts "Which plant association would you like to remove from this trait?"
+    @selected_trait.all_plants.each_with_index do |plant, index|
+        puts "#{index+1}) #{plant.name}"
+    end
+    user_input = gets.chomp
+    @selected_trait.all_plants.each_with_index do |plant, index|
+      if index == (user_input.to_i - 1)
+        DB.exec("DELETE FROM plant_traits WHERE trait_id = (#{plant.id}) AND plant_id = (#{@selected_trait.id})")
+      end
+    end
+    main_menu
+  end
+end
+
 def delete_plant
   puts "Which plant is no longer worthy of the database?"
   Plant.all.each do |plant|
