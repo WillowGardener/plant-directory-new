@@ -52,9 +52,27 @@ def browse_plants
   end
   user_input = gets.chomp
   Plant.all.each do |plant|
-    if plant == user_input
+    if user_input == 'm'
+      main_menu
+    elsif user_input == plant
       puts plant + "traits:"
       plant.all_traits
+    end
+  end
+end
+
+def browse_traits
+  puts "enter the trait you'd like to look more closely at or enter 'm' to return to the main menu"
+  Trait.all do |trait|
+    puts trait.name
+  end
+  user_input = gets.chomp
+  Trait.all.each do |trait|
+    if user_input == 'm'
+      main_menu
+    elsif user_input == trait
+      puts trait + "is a trait of these plants:"
+      trait.all_plants
     end
   end
 end
