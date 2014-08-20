@@ -1,7 +1,7 @@
 require 'pg'
 require './lib/plant'
 require './lib/trait'
-require './lib/plant_traits'
+require './lib/plant_trait'
 require 'rspec'
 # require 'pry'
 

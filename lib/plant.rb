@@ -1,6 +1,4 @@
 require 'pg'
-require 'plant_traits'
-require 'trait'
 
 class Plant
   attr_reader(:attributes, :name, :id)
