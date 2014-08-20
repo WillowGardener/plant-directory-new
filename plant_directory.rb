@@ -83,6 +83,22 @@ def browse_traits
   main_menu
 end
 
+def search
+  puts "Enter the plant or trait you'd like to find"
+  search_term = gets.chomp
+  Plant.all.each do |plant|
+    if plant.name == search_term
+      puts "yup, that's a plant!"
+    end
+  end
+  Trait.all.each do |trait|
+    if trait.trait == search_term
+      puts "yup, that's a trait!"
+    end
+  end
+  main_menu
+end
+
 def add_plant
   puts "What is the name of the plant?"
   user_input = gets.chomp
