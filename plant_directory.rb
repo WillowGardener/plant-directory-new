@@ -73,11 +73,14 @@ def browse_traits
   Trait.all.each do |trait|
     if user_input == 'm'
       main_menu
-    elsif user_input == trait
-      puts trait + "is a trait of these plants:"
-      trait.all_plants
+    elsif user_input == trait.trait
+      puts "#{trait.trait} is a trait of these plants:"
+      trait.all_plants.each do |plant|
+        puts plant.name
+      end
     end
   end
+  main_menu
 end
 
 def add_plant
@@ -158,6 +161,37 @@ def edit_plant
   end
 end
 
+def delete_plant
+  puts "Which plant is no longer worthy of the database?"
+  Plant.all.each do |plant|
+    puts plant.name
+  end
+  user_input = gets.chomp
+  Plant.all.each do |plant|
+    if plant.name == user_input
+      @doomed = plant.name
+      plant.delete
+    end
+  end
+  puts "#{@doomed} has been deleted from the database"
+  main_menu
+end
+
+def delete_trait
+  puts "Which trait is no longer worthy of the database?"
+  Trait.all.each do |trait|
+    puts trait.name
+  end
+  user_input = gets.chomp
+  Trait.all.each do |trait|
+    if trait.trait == user_input
+    @doomed = trait.name
+    trait.delete
+    end
+  end
+  puts "#{@doomed} has been deleted from the database"
+  main_menu
+end
 
 
 
